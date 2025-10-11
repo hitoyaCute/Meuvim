@@ -1,26 +1,26 @@
 return {
-  "shaunsingh/nord.nvim",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    vim.g.nord_contrast = true
-    vim.g.nord_borders = false
-    vim.g.nord_disable_background = true
-    vim.g.nord_italic = false
-    vim.g.nord_uniform_diff_background = true
-    vim.g.nord_bold = false
+	"shaunsingh/nord.nvim",
+	lazy = false,
+	priority = 1000,
+	config = function()
+		vim.g.nord_contrast = true
+		vim.g.nord_borders = false
+		vim.g.nord_disable_background = true
+		vim.g.nord_italic = false
+		vim.g.nord_uniform_diff_background = true
+		vim.g.nord_bold = false
 
-    -- load
-    require('nord').set()
+		-- load
+		require("nord").set()
 
-    local bg_transparent = true
+		local bg_transparent = true
 
-    local toggle_transparency = function()
-      bg_transparent = not bg_transparent
-      vim.g.nord_disable_background = bg_transparent
-      vim.cmd [[colorscheme nord]]
-    end
+		local toggle_transparency = function()
+			bg_transparent = not bg_transparent
+			vim.g.nord_disable_background = bg_transparent
+			vim.cmd([[colorscheme nord]])
+		end
 
-    vim.keymap.set('n', '<Leader>bgt', toggle_transparency, { noremap = true, silent = true })
-  end
+		vim.keymap.set("n", "<Leader>bgt", toggle_transparency, { noremap = true, silent = true })
+	end,
 }
