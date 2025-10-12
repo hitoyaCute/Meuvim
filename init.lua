@@ -19,7 +19,7 @@ require("lazy").setup({
 	require("plugins.lsp"),
 	require("plugins.colortheme"),
 	require("plugins.neotree"),
-	require("plugins.none_ls"),
+	require("plugins.none-ls"),
 	require("plugins.bufferline"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
@@ -30,6 +30,8 @@ require("lazy").setup({
 	require("plugins.alpha"),
 	require("plugins.indent-blankline"),
 	require("plugins.misc"),
+	require("plugins.which-key")
 })
+
 
 

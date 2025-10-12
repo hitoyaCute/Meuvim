@@ -9,16 +9,17 @@ return {
     'tpope/vim-sleuth',
   },
   {
+    "tamago324/nlsp-settings.nvim",
+    cmd = "LspSettings",
+    lazy = true
+  },
+  {
     -- Powerful Git integration for Vim
     'tpope/vim-fugitive',
   },
   {
     -- GitHub integration for vim-fugitive
     'tpope/vim-rhubarb',
-  },
-  {
-    -- Hints keybinds
-    'folke/which-key.nvim',
   },
   {
     -- Autoclose parentheses, brackets, quotes, etc.

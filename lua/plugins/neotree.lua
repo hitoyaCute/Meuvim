@@ -64,7 +64,8 @@ return {
 				icon = {
 					folder_closed = "",
 					folder_open = "",
-					folder_empty = "󰜌",
+					folder_empty = "",
+					folder_empty_open = "",
 					-- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
 					-- then these will never be used.
 					default = "*",
@@ -82,16 +83,17 @@ return {
 				git_status = {
 					symbols = {
 						-- Change type
-						added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-						modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-						deleted = "✖", -- this can only be used in the git_status source
-						renamed = "󰁕", -- this can only be used in the git_status source
+						added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+						modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+						deleted = "", -- this can only be used in the git_status source
+						renamed = "", -- this can only be used in the git_status source
 						-- Status type
-						untracked = "",
-						ignored = "",
-						unstaged = "󰄱",
+						untracked = "U",
+						ignored = "◌",
+						unstaged = "",
 						staged = "",
-						conflict = "",
+						conflict = "",
+						branch = "",
 					},
 				},
 				-- If you don't want to use these columns, you can set `enabled = false` for each of them individually
@@ -303,7 +305,7 @@ return {
 		})
 
 		vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-		vim.keymap.set("n", "<leader>e", ":Neotree toggle position=left<CR>", { noremap = true, silent = true }) -- focus file explorer
-		vim.keymap.set("n", "<leader>ngs", ":Neotree float git_status<CR>", { noremap = true, silent = true }) -- open git status window
+		vim.keymap.set("n", "<leader>e", ":Neotree toggle position=left<CR>", { noremap = true, silent = true, desc = "toggle Neotree" }) -- focus file explorer
+		vim.keymap.set("n", "<leader>ngs", ":Neotree float git_status<CR>", { noremap = true, silent = true, desc = "float git_status" }) -- open git status window
 	end,
 }
