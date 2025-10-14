@@ -1,46 +1,37 @@
-return {
-  -- Highlight, edit, and navigate code
+return { -- Highlight, edit, and navigate code
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   main = "nvim-treesitter.configs", -- Sets main module to use for opts
   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-  config = function()
-    local utils = require "lvim.utils"
-    local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
-    vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
-    require("lvim.core.treesitter").setup()
-  end,
-  cmd = {
-    "TSInstall",
-    "TSUninstall",
-    "TSUpdate",
-    "TSUpdateSync",
-    "TSInstallInfo",
-    "TSInstallSync",
-    "TSInstallFromGrammar",
-  },
-  event = "User FileOpened",
   opts = {
     ensure_installed = {
-      "bash",
-      "regex",
-      "c",
-      "cpp",
-      "java",
-      "json",
-      "diff",
-      "html",
       "lua",
       "python",
       "javascript",
-      "luadoc",
-      "markdown",
-      "markdown_inline",
-      "query",
-      "vim",
+      "typescript",
       "vimdoc",
+      "vim",
+      "regex",
+      "cpp",
+      "terraform",
+      "sql",
+      "dockerfile",
+      "toml",
+      "json",
+      "java",
+      "groovy",
+      "go",
+      "gitignore",
+      "graphql",
+      "yaml",
       "make",
       "cmake",
+      "markdown",
+      "markdown_inline",
+      "bash",
+      "tsx",
+      "css",
+      "html",
     },
     -- Autoinstall languages that are not installed
     auto_install = true,

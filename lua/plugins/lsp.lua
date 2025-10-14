@@ -100,7 +100,7 @@ return {
 						group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
-							vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+							vim.api.nvim_clear_autocmds { group = "kickstart-lsp-highlight", buffer = event2.buf }
 						end,
 					})
 				end
@@ -109,7 +109,7 @@ return {
 				-- code, if the language server you are using supports them
 				if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 					map("<leader>th", function()
-						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
 					end, "[T]oggle Inlay [H]ints")
 				end
 			end,
@@ -132,22 +132,23 @@ return {
 		local servers = {
 			ts_ls = {},
 			ruff = {},
-			pylsp = {
-				settings = {
-					pylsp = {
-						plugins = {
-							pyflakes = { enabled = false },
-							pycodestyle = { enabled = false },
-							autopep8 = { enabled = false },
-							yapf = { enabled = false },
-							mccabe = { enabled = false },
-							pylsp_mypy = { enabled = false },
-							pylsp_black = { enabled = false },
-							pylsp_isort = { enabled = false },
-						},
-					},
-				},
-			},
+			-- pylsp = {
+			-- 	settings = {
+			-- 		pylsp = {
+			-- 			plugins = {
+			-- 				pyflakes = { enabled = false },
+			-- 				pycodestyle = { enabled = false },
+			-- 				autopep8 = { enabled = false },
+			-- 				yapf = { enabled = false },
+			-- 				mccabe = { enabled = false },
+			-- 				pylsp_mypy = { enabled = false },
+			-- 				pylsp_black = { enabled = false },
+			-- 				pylsp_isort = { enabled = false },
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
+			pyright = {},
 			html = { filetypes = { "html", "twig", "hbs" } },
 			cssls = {},
 			tailwindcss = {},
@@ -156,26 +157,27 @@ return {
 			terraformls = {},
 			jsonls = {},
 			yamlls = {},
+			clangd = {},
 			lua_ls = {
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-						runtime = { version = "LuaJIT" },
-						workspace = {
-							checkThirdParty = false,
-							library = vim.api.nvim_get_runtime_file("", true),
-						},
-						diagnostics = {
-							globals = { "vim" },
-							disable = { "missing-fields" },
-						},
-						format = {
-							enable = false,
-						},
-					},
-				},
+				-- 				settings = {
+				-- 					Lua = {
+				-- 						completion = {
+				-- 							callSnippet = "Replace",
+				-- 						},
+				-- 						runtime = { version = "LuaJIT" },
+				-- 						workspace = {
+				-- 							checkThirdParty = false,
+				-- 							library = vim.api.nvim_get_runtime_file("", true),
+				-- 						},
+				-- 						diagnostics = {
+				-- 							globals = { "vim" },
+				-- 							disable = { "missing-fields" },
+				-- 						},
+				-- 						format = {
+				-- 							enable = false,
+				-- 						},
+				-- 					},
+				-- 				},
 			},
 		}
 
@@ -184,7 +186,7 @@ return {
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
 		})
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+		require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
 		for server, cfg in pairs(servers) do
 			-- For each LSP server (cfg), we merge:

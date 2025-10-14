@@ -64,6 +64,15 @@ return {
         custom_filter = custom_filter,
         offsets = {
           {
+            filetype = "snacks_layout_box",
+          },
+          {
+            filetype = "neo-tree",
+            text = "Neo-tree",
+            highlight = "Directory",
+            text_align = "left",
+          },
+          {
             filetype = "undotree",
             text = "Undotree",
             highlight = "PanelHeading",

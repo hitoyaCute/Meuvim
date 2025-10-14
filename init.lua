@@ -15,6 +15,9 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+-- Enable truecolor support
+vim.opt.termguicolors = true
+
 require("lazy").setup({
 	require("plugins.lsp"),
 	require("plugins.colortheme"),
@@ -30,7 +33,8 @@ require("lazy").setup({
 	require("plugins.alpha"),
 	require("plugins.indent-blankline"),
 	require("plugins.misc"),
-	require("plugins.which-key")
+	require("plugins.which-key"),
+	-- require("plugins.icons"),
 })
 
 

@@ -1,5 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	event = "VeryLazy",
 	config = function()
 		local mode = {
 			"mode",
@@ -40,13 +41,13 @@ return {
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = "nord", -- Set theme based on environment variable
+				theme = "auto", -- Set theme based on environment variable
 				-- Some useful glyphs:
 				-- https://www.nerdfonts.com/cheat-sheet
 				--        
 				section_separators = { left = "", right = "" },
 				component_separators = { left = "", right = "" },
-				disabled_filetypes = { "alpha", "neo-tree" },
+				disabled_filetypes = { "alpha", "neo-tree",  statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
 				always_divide_middle = true,
 			},
 			sections = {
@@ -59,8 +60,15 @@ return {
 					{ "encoding", cond = hide_in_width },
 					{ "filetype", cond = hide_in_width },
 				},
-				lualine_y = { "location" },
-				lualine_z = { "progress" },
+				lualine_y = {
+					{ "progress", separator = " ", padding = { left = 1, right = 0 } },
+					{ "location", padding = { left = 0, right = 1 } },
+				},
+				lualine_z = {
+					function()
+						return " " .. os.date("%R")
+					end,
+				},
 			},
 			inactive_sections = {
 				lualine_a = {},
@@ -71,7 +79,7 @@ return {
 				lualine_z = {},
 			},
 			tabline = {},
-			extensions = { "fugitive" },
+			extensions = { "fugitive", "neo-tree", "lazy", "fzf" },
 		})
 	end,
 }
