@@ -89,8 +89,8 @@ return {
     local wk = require("which-key")
     wk.add({
       {"<leader>M", group = "MeuVim", icon = ""},
-      {"<leader>Mc", "<cmd>e ~/.config/nvim/init.lua<CR>", desc = "configure Meuvim", mode = "n"},
-      {"<leader>Mr", "<cmd>source ~/.config/nvim/init.lua<CR>", desc = "Reload Meuvim", mode = "n"},
+      -- {"<leader>Mc", "<cmd>e ~/.config/nvim/init.lua<CR>", desc = "configure Meuvim", mode = "n"},
+      {"<leader>Mc", "<cmd>e " .. vim.env.MEUVIM_BASE_DIR .. "<CR>", desc = "Configure Meuvim", mode = "n"},
       {"<leader>t", group = "Tab navigation", mode = "n"},
       {"<leader>s", group = "Telescope (search)"},
     })

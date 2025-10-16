@@ -14,7 +14,7 @@ vim.diagnostic.config {
       return string.format('%s %s', code, diagnostic.message)
     end,
   },
-  underline = false,
+  underline = true,
   update_in_insert = true,
   float = {
     source = true, -- Or "if_many"
@@ -30,7 +30,7 @@ vim.diagnostic.config {
   -- Make diagnostic background transparent
   on_ready = function()
     vim.cmd 'highlight DiagnosticVirtualText guibg=NONE'
-  end,
+   end,
 }
 
 -- Highlight on yank
