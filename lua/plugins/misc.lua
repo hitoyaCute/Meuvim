@@ -1,5 +1,9 @@
 -- Standalone plugins with less than 10 lines of config go here
 return {
+  {
+    "kyazdani42/nvim-web-devicons"
+  },
+  {"mfussenegger/nvim-jdtls", lazy = true},
   -- {
   --   -- Tmux & split window navigation
   --   'christoomey/vim-tmux-navigator',

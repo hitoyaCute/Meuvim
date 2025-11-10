@@ -1,6 +1,8 @@
 return {
 	{
-		"IogaMaster/neocord",
+		--"IogaMaster/neocord",
+		"hitoyaCute/neocord",
+		event = "VeryLazy",
 		opts = {
 			logo = "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/nvim-icon.png",
 			logo_tooltip = "Neovim",
@@ -10,9 +12,10 @@ return {
 			log_level ="info",
 			debounce_timeout = 10,
 			blacklist = {},
-			file_assets = {},
+-- 			file_assets = {},
 			show_time = true,
 			global_timer = true,
+			custom_distro = "Meuvim",
 
 			editing_text = "Editing %s UwU",
 			file_explorer_text = "Bwowsing files",

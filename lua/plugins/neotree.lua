@@ -68,11 +68,11 @@ return {
 					folder_empty_open = "",
 					-- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
 					-- then these will never be used.
-					default = "*",
+					default = "",
 					highlight = "NeoTreeFileIcon",
 				},
 				modified = {
-					symbol = "[+]",
+					symbol = "",
 					highlight = "NeoTreeModified",
 				},
 				name = {
@@ -86,12 +86,12 @@ return {
 						added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
 						modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
 						deleted = "", -- this can only be used in the git_status source
-						renamed = "", -- this can only be used in the git_status source
+						renamed = "➜", -- this can only be used in the git_status source
 						-- Status type
 						untracked = "U",
 						ignored = "◌",
 						unstaged = "",
-						staged = "",
+						staged = "S",
 						conflict = "",
 						branch = "",
 					},
@@ -187,7 +187,7 @@ return {
 					visible = false, -- when true, they will just be displayed differently than normal items
 					hide_dotfiles = false,
 					hide_gitignored = false,
-					hide_hidden = false, -- only works on Windows for hidden files/directories
+					hide_hidden = true, -- only works on Windows for hidden files/directories
 					hide_by_name = {
 						".DS_Store",
 						"thumbs.db",
