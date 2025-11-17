@@ -38,7 +38,7 @@ require("lazy").setup({
 
 
 	-- other
-	-- require("plugins.neocord"),
+	require("plugins.neocord"),
 	require("plugins.misc"),
 	-- require("plugins.java"),
 
