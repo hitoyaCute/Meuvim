@@ -1,3 +1,7 @@
+-- Add at the very top for faster startup
+vim.loader.enable()
+
+
 local base_dir = vim.env.MEUVIM_BASE_DIR
   or (function()
     local init_path = debug.getinfo(1, "S").source
@@ -22,6 +26,7 @@ require("lazy").setup({
 	require("plugins.which-key"),
 	require("plugins.none-ls"),
 	require("plugins.autocompletion"),
+	require("plugins.avante"),
 
 	-- navigation
 	require("plugins.telescope"),
@@ -35,6 +40,8 @@ require("lazy").setup({
 	require("plugins.indent-blankline"),
 	require("plugins.alpha"),
 	require("plugins.gitsigns"),
+	
+	-- require("plugins.mini-animate"),
 
 
 	-- other
@@ -42,13 +49,12 @@ require("lazy").setup({
 	require("plugins.misc"),
 	-- require("plugins.java"),
 
-
-
 })
 
 
 require("core.conf.pyright")
 require("core.conf.jdtls")
+require("core.conf.clangd")
 
 
 

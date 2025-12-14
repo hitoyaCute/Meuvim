@@ -44,5 +44,3 @@ vim.opt.laststatus = 1
 vim.cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
 vim.cmd("let g:neovide_cursor_vfx_particle_density = 32.0")
 
-
-

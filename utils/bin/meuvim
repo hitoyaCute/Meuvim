@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+
+source $(dirname $(dirname $(which conda)))/etc/profile.d/conda.sh
+
+export NVIM_APPNAME="${NVIM_APPNAME:-"Meuvim"}"
+
+conda activate
+export MEUVIM_BASE_DIR="${MEUVIM_BASE_DIR:-"/home/hitoya/.config/Meuvim/"}"
+
+source $MEUVIM_BASE_DIR'.bashrc'
+
+exec -a "$NVIM_APPNAME" nvim -u $MEUVIM_BASE_DIR"init.lua" "$@"
+conda deactivate
