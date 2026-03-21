@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local table_concat = function (a, temp)
+local table_concat = function(a, temp)
   for _, value in ipairs(a) do
     table.insert(temp, value)
   end
@@ -10,13 +10,16 @@ local table_concat = function (a, temp)
 end
 
 -- Disable the space-bar key's default behavior in Normal and Visual modes
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true})
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- for conciseness
 local opts = { noremap = true, silent = true }
 
 -- save and format
-vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", table_concat(opts, { desc = "Format and Save" }))
+vim.keymap.set("n", "<C-s>", function()
+  vim.lsp.buf.format { async = false }
+  vim.cmd "write"
+end, table_concat(opts, { desc = "Format and Save" }))
 
 -- classic space -> w
 vim.keymap.set("n", "<leader>w", "<cmd>noautocmd w <CR>", table_concat(opts, { desc = "Save the current file" }))
@@ -36,9 +39,9 @@ vim.keymap.set("n", "n", "nzzzv", table_concat(opts, { desc = "Go to the next" }
 vim.keymap.set("n", "N", "Nzzzv", table_concat(opts, { desc = "Go to the previous" }))
 
 -- Resize with arrows
-vim.keymap.set("n", "<C-Up>",    ":resize -2<CR>",          table_concat(opts, { desc = "Resize Up" }))
-vim.keymap.set("n", "<C-Down>",  ":resize +2<CR>",          table_concat(opts, { desc = "Resize Down" }))
-vim.keymap.set("n", "<C-Left>",  ":vertical resize -2<CR>", table_concat(opts, { desc = "Resize Left" }))
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", table_concat(opts, { desc = "Resize Up" }))
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", table_concat(opts, { desc = "Resize Down" }))
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", table_concat(opts, { desc = "Resize Left" }))
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", table_concat(opts, { desc = "Resize Right" }))
 
 -- Split navigation
@@ -47,11 +50,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", table_concat(opts, { desc = "Move to next
 vim.keymap.set("n", "<C-j>", "<C-w>j", table_concat(opts, { desc = "Move to window bellow" })) -- move to the window bellow
 vim.keymap.set("n", "<C-k>", "<C-w>k", table_concat(opts, { desc = "Move to window above" })) -- move to the window above
 
--- Tabs navigation
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>",   table_concat(opts, { desc = "Create new tab" }))
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", table_concat(opts, { desc = "Close the current tab" }))
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>",     table_concat(opts, { desc = "Go to next tab" })) -- go to next tab
-vim.keymap.set("n", "<leader>tb", ":tabp<CR>",     table_concat(opts, { desc = "Go to previous tab" })) -- go to previous tab
+-- buffer navigation
+vim.keymap.set("n", "<leader>bd", ":bd<CR>", table_concat(opts, { desc = "Close the current tab" }))
+vim.keymap.set("n", "<leader>bn", ":bn<CR>", table_concat(opts, { desc = "Go to next tab" })) -- go to next tab
+vim.keymap.set("n", "<leader>bp", ":bp<CR>", table_concat(opts, { desc = "Go to previous tab" })) -- go to previous tab
 
 -- better indenting
 vim.keymap.set("v", "<", "<gv", table_concat(opts, { desc = "Indent" })) -- indent
@@ -61,6 +63,4 @@ vim.keymap.set("v", ">", ">gv", table_concat(opts, { desc = "Unindent" })) -- un
 vim.keymap.set("v", "p", '"_dP', table_concat(opts, { desc = "Paste without yanking" }))
 
 -- move current line
-vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv-gv'", table_concat(opts, { desc = "Move current line" }))
-
-
+-- vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv-gv'", table_concat(opts, { desc = "Move current line" }))

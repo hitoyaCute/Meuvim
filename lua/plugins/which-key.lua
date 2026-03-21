@@ -6,10 +6,10 @@ return {
   event = "VeryLazy",
   opts = {
     -- Use new keys instead of old “icons”, “window”, etc.
-    preset = "classic",     -- or "modern", "helix", etc.
-    delay = 200,             -- delay before popup (can also be function)
+    preset = "classic", -- or "modern", "helix", etc.
+    delay = 200, -- delay before popup (can also be function)
     filter = function(mapping)
-      return mapping.desc ~= nil  -- only show mappings with descriptions
+      return mapping.desc ~= nil -- only show mappings with descriptions
     end,
 
     plugins = {
@@ -31,9 +31,9 @@ return {
     },
 
     icons = {
-      breadcrumb = " ",   -- shows the active key combo in command-line area
-      separator  = "",   -- symbol between key and its label
-      group      = " ",   -- prefix for group names
+      breadcrumb = " ", -- shows the active key combo in command-line area
+      separator = "", -- symbol between key and its label
+      group = " ", -- prefix for group names
       keys = {
         Up = " ",
         Down = " ",
@@ -66,10 +66,9 @@ return {
       },
     },
 
-
     layout = {
       height = { min = 4, max = 25 },
-      width  = { min = 20, max = 60 },
+      width = { min = 20, max = 60 },
       spacing = 3,
       align = "center",
     },
@@ -83,20 +82,20 @@ return {
       return ctx.mode == "V" or ctx.mode == "<C-V>"
     end,
 
-    spec = {},  -- you can put default mappings here
+    spec = {}, -- you can put default mappings here
   },
   config = function(_, opts)
-    local wk = require("which-key")
-    wk.add({
-      {"<leader>M", group = "MeuVim", icon = ""},
+    local wk = require "which-key"
+    wk.add {
+      { "<leader>M", group = "MeuVim", icon = "" },
       -- {"<leader>Mc", "<cmd>e ~/.config/nvim/init.lua<CR>", desc = "configure Meuvim", mode = "n"},
-      {"<leader>Mc", "<cmd>e " .. vim.env.MEUVIM_BASE_DIR .. "<CR>", desc = "Configure Meuvim", mode = "n"},
-      {"<leader>t", group = "Tab navigation", mode = "n"},
-      {"<leader>s", group = "Telescope (search)"},
-    })
-  end
-
+      { "<leader>Mc", "<cmd>e " .. vim.env.MEUVIM_BASE_DIR .. "<CR>", desc = "Configure Meuvim", mode = "n" },
+      { "<leader>t", group = "Tab navigation", mode = "n" },
+      { "<leader>s", group = "Telescope (search)" },
+      { "<leader>b", group = "Buffer/Background" },
+      { "<leader>c", group = "Code" },
+      { "<leader>d", group = "Code Desc" },
+      { "<leader>p", group = "Presentation" },
+    }
+  end,
 }
-
-
-

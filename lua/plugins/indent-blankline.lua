@@ -21,5 +21,9 @@ return {
 				"Trouble",
 			},
 		},
+		whitespace = {
+			remove_blankline_trail = true,
+		},
 	},
 }
+

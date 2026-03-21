@@ -1,53 +1,106 @@
-return { -- Highlight, edit, and navigate code
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  main = "nvim-treesitter.configs", -- Sets main module to use for opts
-  -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-  opts = {
-    ensure_installed = {
-      "lua",
-      "python",
-      "javascript",
-      "typescript",
-      "vimdoc",
-      "vim",
-      "regex",
-      "cpp",
-      "terraform",
-      "sql",
-      "dockerfile",
-      "toml",
-      "json",
-      "java",
-      "groovy",
-      "go",
-      "gitignore",
-      "graphql",
-      "yaml",
-      "make",
-      "cmake",
-      "markdown",
-      "markdown_inline",
-      "bash",
-      "tsx",
-      "css",
-      "html",
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    -- event = { "BufReadPost", "BufNewFile" }, -- lazy load on file open
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-context",
     },
-    -- Autoinstall languages that are not installed
-    auto_install = true,
-    highlight = {
-      enable = true,
-      -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-      --  If you are experiencing weird indenting issues, add the language to
-      --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-      additional_vim_regex_highlighting = { "ruby" },
-    },
-    indent = { enable = true, disable = { "ruby" } },
+    -- main = "nvim-treesitter.configs",
+    config = function()
+      require("nvim-treesitter").setup({
+        ensure_installed = {
+          "lua",
+          "python",
+          "javascript",
+          "typescript",
+          "vimdoc",
+          "vim",
+          "regex",
+          "cpp",
+          "terraform",
+          "sql",
+          "dockerfile",
+          "toml",
+          "json",
+          "java",
+          "groovy",
+          "go",
+          "gitignore",
+          "graphql",
+          "yaml",
+          "make",
+          "cmake",
+          "markdown",
+          "markdown_inline",
+          "bash",
+          "tsx",
+          "css",
+          "html",
+        },
+        auto_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = { "ruby" },
+        },
+        indent = { enable = true, disable = { "ruby" } },
+
+        -- Incremental selection: expand/shrink selection by syntax node
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = "<C-s>",
+            node_decremental = "<bs>",
+          },
+        },
+
+        -- Textobjects: select/move/swap by function, class, parameter, etc.
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true, -- jump forward to next match automatically
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "@parameter.inner",
+            },
+          },
+          move = {
+            enable = true,
+            set_jumps = true, -- adds to jumplist so <C-o> works
+            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+          },
+          swap = {
+            enable = true,
+            swap_next = { ["<leader>sp"] = "@parameter.inner" },
+            swap_previous = { ["<leader>sP"] = "@parameter.inner" },
+          },
+        },
+      })
+    end
   },
-  -- There are additional nvim-treesitter modules that you can use to interact
-  -- with nvim-treesitter. You should go explore a few and see what interests you:
-  --
-  --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-  --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-  --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+
+  -- Shows current function/class context pinned at top of buffer
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufReadPost",
+    opts = {
+      max_lines = 3, -- max lines the context window can take up
+      trim_scope = "outer",
+      mode = "cursor",
+    },
+    keys = {
+      { "<leader>tc", "<cmd>TSContextToggle<cr>", desc = "Toggle treesitter context" },
+    },
+  },
 }

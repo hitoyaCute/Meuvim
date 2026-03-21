@@ -1,11 +1,10 @@
-
 -- ~/.config/nvim/lua/meuvim/plugins/alpha.lua
 return {
   "goolord/alpha-nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    local alpha = require("alpha")
-    local dashboard = require("alpha.themes.dashboard")
+    local alpha = require "alpha"
+    local dashboard = require "alpha.themes.dashboard"
 
     -- Header (ASCII Art)
     dashboard.section.header.val = {
@@ -30,7 +29,7 @@ return {
     -- Footer
     local function footer()
       local stats = require("lazy").stats()
-      local datetime = os.date("%Y-%m-%d %H:%M:%S")
+      local datetime = os.date "%Y-%m-%d %H:%M:%S"
       return "⚡ MeuVim loaded " .. stats.count .. " plugins in " .. stats.startuptime .. "ms | " .. datetime
     end
     dashboard.section.footer.val = footer()
@@ -46,8 +45,8 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "AlphaReady",
       callback = function()
-        vim.cmd("hi Normal guibg=#000000")
-        vim.cmd("hi NormalNC guibg=#000000")
+        vim.cmd "hi Normal guibg=#000000"
+        vim.cmd "hi NormalNC guibg=#000000"
       end,
     })
 
@@ -55,14 +54,12 @@ return {
     vim.api.nvim_create_autocmd("BufUnload", {
       buffer = 0,
       callback = function()
-        vim.cmd("hi Normal guibg=none")
-        vim.cmd("hi NormalNC guibg=none")
+        vim.cmd "hi Normal guibg=none"
+        vim.cmd "hi NormalNC guibg=none"
       end,
     })
   end,
 }
-
-
 
 -- {
 --   'goolord/alpha-nvim',
