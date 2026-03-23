@@ -23,7 +23,7 @@ require("lazy").setup({
   require "plugins.which-key",
   require "plugins.none-ls",
   require "plugins.autocompletion",
-  -- require "plugins.copilot",
+  require "plugins.copilot",
   require "plugins.ufo",
 
   -- navigation

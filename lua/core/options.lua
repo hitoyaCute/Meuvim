@@ -16,6 +16,7 @@ vim.opt.smoothscroll  = true
 vim.opt.laststatus    = 2       -- 1 = only with splits, 2 = always, 3 = global
 
 
+
 -- ============================================================
 -- Indentation  (one source of truth — 4 spaces)
 -- ============================================================
@@ -52,7 +53,7 @@ vim.opt.updatetime   = 300             -- faster CursorHold triggers (LSP hover,
 vim.opt.pumheight    = 12              -- max completion menu items
 vim.opt.completeopt  = "menuone,noselect"
 vim.opt.shortmess:append("c")         -- suppress ins-completion messages
-
+vim.opt.fillchars:append("eob: ")     -- hopefully removed the "~" on empty lines
 
 -- ============================================================
 -- Window splits

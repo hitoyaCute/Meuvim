@@ -1,6 +1,7 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
+
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
@@ -189,16 +190,16 @@ return {
           hide_dotfiles = false,
           hide_gitignored = false,
           hide_hidden = true, -- only works on Windows for hidden files/directories
-          hide_by_name = {
-            ".DS_Store",
-            "thumbs.db",
-            "node_modules",
-            "__pycache__",
-            ".virtual_documents",
-            ".git",
-            ".python-version",
-            ".venv",
-          },
+          -- hide_by_name = {
+          --   ".DS_Store",
+          --   "thumbs.db",
+          --   "node_modules",
+          --   "__pycache__",
+          --   ".virtual_documents",
+          --   ".git",
+          --   ".python-version",
+          --   ".venv",
+          -- },
           hide_by_pattern = { -- uses glob style patterns
             --"*.meta",
             --"*/src/*/tsconfig.json",
@@ -215,7 +216,7 @@ return {
           },
         },
         follow_current_file = {
-          enabled = false, -- This will find and focus the file in the active buffer every time
+          enabled = true, -- This will find and focus the file in the active buffer every time
           --               -- the current file is changed while the tree is open.
           leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
